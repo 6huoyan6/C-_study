@@ -1,0 +1,93 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+using namespace std;
+class Person
+{
+public:
+	Person(string n, string s, int y) :name(n), sex(s), years(y) {}
+	void setPerson()
+	{
+		cin >> name >> sex >> years;
+	}
+	void displayPerson()
+	{
+		cout << name << " " << sex << " " << years << endl;
+	}
+private:
+	string name;
+	string sex;
+	int years;
+};
+class Teacher :virtual public Person
+{
+public:
+	Teacher(string n, string s, int y, string ti, string r, string l) :Person(n, s, y), title(ti), room(r), lesson(l) {}
+	void setTeacher()
+	{
+		setPerson();
+		cin >> title >> room >> lesson;
+	}
+	void displayTeacher()
+	{
+		displayPerson();
+		cout << title << " " << room << " " << lesson;
+	}
+private:
+	string title;
+	string room;
+	string lesson;
+};
+class Student :virtual public Person
+{
+public:
+	Student(string n, string s, int y, string m,string g,int t):Person(n,s,y),major(m),grade(g),type(t){}
+	void setStudent()
+	{
+		cin >> major >> grade >> type;
+	}
+	void displayStudent()
+	{
+		cout << major << " " << grade << " ";
+		if (type == 1) { cout << "本科生" << endl; }
+		else if (type == 2) { cout << "硕士生" << endl; }
+		else if (type == 3) { cout << "博士生" << endl; }
+	}
+private:
+	string major;
+	string grade;
+	int type;
+};
+class PostDoctor:public Teacher,public Student 
+{
+public:
+	PostDoctor(string n, string s, int y, string ti, string r, string l, string m, string g, int t):Person(n, s, y),Teacher(n,s,y,ti,r,l),Student(n,s,y,m,g,t){}
+	void setPostDoctor()
+	{
+		setTeacher();
+		setStudent();
+	}
+	void displayPostDoctor()
+	{
+		displayTeacher();
+		displayStudent();
+	}
+};
+int _tmain(int argc, _TCHAR* argv[])
+{
+	Teacher tea("lili","w",28,"sb","jys","C");
+	Student stu("lili", "w", 28, "C", "1704", 1);
+	PostDoctor pos("lili", "w", 28, "sb", "jys", "C", "C", "1704", 1);
+	tea.setTeacher();
+	tea.displayTeacher();
+	stu.setPerson();
+	stu.setStudent();
+	stu.displayPerson();
+	stu.displayStudent();
+	pos.setPostDoctor();
+	pos.displayPostDoctor();
+	system("pause");
+	return 0;
+}
+
+
