@@ -12,7 +12,7 @@ public:
 	}
 	void displayPerson()
 	{
-		cout << name << " " << sex << " " << years << endl;
+		cout << name << " " << sex << " " << years << " ";
 	}
 private:
 	string name;
@@ -31,7 +31,7 @@ public:
 	void displayTeacher()
 	{
 		displayPerson();
-		cout << title << " " << room << " " << lesson;
+		cout << title << " " << room << " " << lesson<<endl;
 	}
 private:
 	string title;
@@ -61,7 +61,8 @@ private:
 class PostDoctor:public Teacher,public Student 
 {
 public:
-	PostDoctor(string n, string s, int y, string ti, string r, string l, string m, string g, int t):Person(n, s, y),Teacher(n,s,y,ti,r,l),Student(n,s,y,m,g,t){}
+	PostDoctor(string n, string s, int y, string ti, string r, string l, string m, string g, int t):Person(n, s, y),Teacher(n,s,y,ti,r,l),
+		Student(n,s,y,m,g,t){}
 	void setPostDoctor()
 	{
 		setTeacher();
